@@ -67,6 +67,57 @@ TEST( EquivalentClassTest, INVALID) {
         EXPECT_FLOAT_EQ( Invalid, Commission(0,0,-8) );
 }
 
+TEST( EdgeTest, LESS1000) {
+        EXPECT_FLOAT_EQ(  0 , Commission(0,0,0) );
+        EXPECT_FLOAT_EQ( 4.5, Commission(1,0,0) );
+        EXPECT_FLOAT_EQ( 3.0, Commission(0,1,0) );
+	EXPECT_FLOAT_EQ( 2.5, Commission(0,0,1) );
+        EXPECT_FLOAT_EQ( 100.0 , Commission(0,0,40) );
+        EXPECT_FLOAT_EQ( 99.0 , Commission(0,33,0) );
+	EXPECT_FLOAT_EQ( 99.0 , Commission(22,0,0) );
+}
+
+TEST( EdgeTest, MORE1000LESS1800) {
+        EXPECT_FLOAT_EQ( 105.25, Commission(23,0,0) );
+        EXPECT_FLOAT_EQ( 103.0, Commission(0,34,0) );
+        EXPECT_FLOAT_EQ( 103.75, Commission(0,0,41) );
+        EXPECT_FLOAT_EQ( 115.0, Commission(11,11,11) );
+        EXPECT_FLOAT_EQ( 220.0, Commission(40,0,0) );
+	EXPECT_FLOAT_EQ( 220.0, Commission(0,60,0) );
+	EXPECT_FLOAT_EQ( 220.0, Commission(0,0,72) );
+	EXPECT_FLOAT_EQ( 220.0, Commission(18,18,18) );
+
+}
+
+TEST( EdgeTest, MORE1800) {
+        EXPECT_FLOAT_EQ( 229.0, Commission(41,0,0) );
+        EXPECT_FLOAT_EQ( 226.0, Commission(0,61,0) );
+        EXPECT_FLOAT_EQ( 225.0, Commission(0,0,73) );
+        EXPECT_FLOAT_EQ( 240.0, Commission(19,19,19) );
+        EXPECT_FLOAT_EQ( 490.0, Commission(70,0,0) );
+	EXPECT_FLOAT_EQ( 340.0, Commission(0,80,0) );
+	EXPECT_FLOAT_EQ( 310.0, Commission(0,0,90) );
+	EXPECT_FLOAT_EQ( 1420.0, Commission(70,80,90) );
+}
+
+TEST( EdgeTest, INVALID) {
+        EXPECT_FLOAT_EQ( Invalid, Commission(-2,0,0) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,-1,0) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,0,-1) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(71,0,0) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,81,0) );
+	EXPECT_FLOAT_EQ( Invalid, Commission(0,0,91) );
+	EXPECT_FLOAT_EQ( Invalid, Commission(-2,-1,-1) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(71,81,91) );
+}
+
+TEST( EdgeTest, TERMINATE) {
+	EXPECT_EXIT(Commission(-1,0,0), ::testing::ExitedWithCode(0), "");
+	EXPECT_EXIT(Commission(-1,2,3), ::testing::ExitedWithCode(0), "");
+	EXPECT_EXIT(Commission(-1,-1,-1), ::testing::ExitedWithCode(0), "");
+}
+
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
