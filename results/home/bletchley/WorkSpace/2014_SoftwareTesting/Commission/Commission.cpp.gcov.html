@@ -31,9 +31,9 @@
             <td class="headerValue">myapp.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">9</td>
             <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntryMed">81.8 %</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
@@ -49,9 +49,9 @@
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">11</td>
             <td class="headerCovTableEntry">18</td>
-            <td class="headerCovTableEntryLo">61.1 %</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr><td><img src="../../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -72,26 +72,26 @@
 <a name="1"><span class="lineNum">       1 </span>                :            : #include &lt;cstdlib&gt;</a>
 <a name="2"><span class="lineNum">       2 </span>                :            : #include &quot;Commission.h&quot;</a>
 <span class="lineNum">       3 </span>                :            : 
-<span class="lineNum">       4 </span>                :<span class="lineCov">          3 : float Commission(int nLocks, int nStocks, int nBarrels){</span>
-<span class="lineNum">       5 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          3 :         if(nLocks==-1)</span>
-<span class="lineNum">       6 </span>                :<span class="lineNoCov">          0 :                 exit(0);</span>
-<span class="lineNum">       7 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          3 :         if(nLocks &gt; LockMax || nStocks &gt; StckMax || nBarrels &gt; BarrelMax || </span>
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 4 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>][<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 8 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>][<span class="branchNoCov" title="Branch 10 was not taken"> - </span><span class="branchCov" title="Branch 11 was taken 3 times"> + </span>]
+<span class="lineNum">       4 </span>                :<span class="lineCov">         13 : float Commission(int nLocks, int nStocks, int nBarrels){</span>
+<span class="lineNum">       5 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 12 times"> + </span>]:<span class="lineCov">         13 :         if(nLocks==-1)</span>
+<span class="lineNum">       6 </span>                :<span class="lineCov">          1 :                 exit(0);</span>
+<span class="lineNum">       7 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 2 was taken 10 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">         12 :         if(nLocks &gt; LockMax || nStocks &gt; StckMax || nBarrels &gt; BarrelMax || </span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 6 was taken 8 times"> + </span><span class="branchCov" title="Branch 7 was taken 1 time"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 8 was taken 7 times"> + </span><span class="branchCov" title="Branch 9 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchCov" title="Branch 11 was taken 6 times"> + </span>]
 <span class="lineNum">       8 </span>                :            :                 nLocks&lt;0 || nStocks &lt;0 || nBarrels &lt; 0)
 <span class="lineNum">       9 </span>                :            :         {
-<span class="lineNum">      10 </span>                :<span class="lineNoCov">          0 :                 return Invalid;</span>
+<span class="lineNum">      10 </span>                :<span class="lineCov">          6 :                 return Invalid;</span>
 <span class="lineNum">      11 </span>                :            :         }
-<span class="lineNum">      12 </span>                :<span class="lineCov">          3 :         float sales = nLocks*LockCost + nStocks* StckCost + nBarrels * BarrelCost; </span>
-<span class="lineNum">      13 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :         if(sales &lt; FirstThrehold )</span>
+<span class="lineNum">      12 </span>                :<span class="lineCov">          6 :         float sales = nLocks*LockCost + nStocks* StckCost + nBarrels * BarrelCost; </span>
+<span class="lineNum">      13 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          6 :         if(sales &lt; FirstThrehold )</span>
 <span class="lineNum">      14 </span>                :            :         {
-<span class="lineNum">      15 </span>                :<span class="lineCov">          1 :                 return sales*0.1;</span>
-<span class="lineNum">      16 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         }else if(sales &lt; SecondThrehold)</span>
+<span class="lineNum">      15 </span>                :<span class="lineCov">          2 :                 return sales*0.1;</span>
+<span class="lineNum">      16 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          4 :         }else if(sales &lt; SecondThrehold)</span>
 <span class="lineNum">      17 </span>                :            :         {
-<span class="lineNum">      18 </span>                :<span class="lineCov">          1 :                 return 100+(sales-FirstThrehold)*0.15;</span>
+<span class="lineNum">      18 </span>                :<span class="lineCov">          2 :                 return 100+(sales-FirstThrehold)*0.15;</span>
 <span class="lineNum">      19 </span>                :            :         }else
 <span class="lineNum">      20 </span>                :            :         {
-<span class="lineNum">      21 </span>                :<span class="lineCov">          3 :                 return 220+(sales-SecondThrehold)*0.2;</span>
+<span class="lineNum">      21 </span>                :<span class="lineCov">         12 :                 return 220+(sales-SecondThrehold)*0.2;</span>
 <span class="lineNum">      22 </span>                :            :         }
 <span class="lineNum">      23 </span>                :            : }
 </pre>

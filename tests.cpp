@@ -123,6 +123,19 @@ TEST( Coverage, C0_1) {
 	EXPECT_FLOAT_EQ( 240.0, Commission(19,19,19) );
 }
 
+TEST( Coverage, C0_2) {
+	EXPECT_EXIT(Commission(-1,0,0), ::testing::ExitedWithCode(0), "");
+	EXPECT_FLOAT_EQ( Invalid, Commission(-2,0,0) );
+}
+
+TEST( Coverage, C2_2) {
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,-2,0) );
+	EXPECT_FLOAT_EQ( Invalid, Commission(0,0,-1) );
+	EXPECT_FLOAT_EQ( Invalid, Commission(71,0,0) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,81,0) );
+        EXPECT_FLOAT_EQ( Invalid, Commission(0,0,91) );
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

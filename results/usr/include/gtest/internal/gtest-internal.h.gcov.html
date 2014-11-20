@@ -31,27 +31,27 @@
             <td class="headerValue">myapp.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntry">19</td>
             <td class="headerCovTableEntry">20</td>
-            <td class="headerCovTableEntryHi">90.0 %</td>
+            <td class="headerCovTableEntryHi">95.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
             <td class="headerValue">2014-11-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">48</td>
-            <td class="headerCovTableEntry">62</td>
-            <td class="headerCovTableEntryMed">77.4 %</td>
+            <td class="headerCovTableEntry">56</td>
+            <td class="headerCovTableEntry">70</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
           </tr>
           <tr>
             <td></td>
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">21</td>
-            <td class="headerCovTableEntry">68</td>
-            <td class="headerCovTableEntryLo">30.9 %</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntry">76</td>
+            <td class="headerCovTableEntryLo">34.2 %</td>
           </tr>
           <tr><td><img src="../../../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -433,7 +433,7 @@
 <span class="lineNum">     362 </span>                :            :   // around may change its bits, although the new value is guaranteed
 <a name="363"><span class="lineNum">     363 </span>                :            :   // to be also a NAN.  Therefore, don't expect this constructor to</a>
 <span class="lineNum">     364 </span>                :            :   // preserve the bits in x when x is a NAN.
-<span class="lineNum">     365 </span>                :<span class="lineCov">          6 :   explicit FloatingPoint(const RawType&amp; x) { u_.value_ = x; }</span>
+<span class="lineNum">     365 </span>                :<span class="lineCov">         24 :   explicit FloatingPoint(const RawType&amp; x) { u_.value_ = x; }</span>
 <span class="lineNum">     366 </span>                :            : 
 <span class="lineNum">     367 </span>                :            :   // Static methods
 <span class="lineNum">     368 </span>                :            : 
@@ -457,7 +457,7 @@
 <span class="lineNum">     386 </span>                :            :   const Bits &amp;bits() const { return u_.bits_; }
 <a name="387"><span class="lineNum">     387 </span>                :            : </a>
 <span class="lineNum">     388 </span>                :            :   // Returns the exponent bits of this number.
-<span class="lineNum">     389 </span>                :<span class="lineCov">          6 :   Bits exponent_bits() const { return kExponentBitMask &amp; u_.bits_; }</span>
+<span class="lineNum">     389 </span>                :<span class="lineCov">         24 :   Bits exponent_bits() const { return kExponentBitMask &amp; u_.bits_; }</span>
 <a name="390"><span class="lineNum">     390 </span>                :            : </a>
 <span class="lineNum">     391 </span>                :            :   // Returns the fraction bits of this number.
 <span class="lineNum">     392 </span>                :<span class="lineNoCov">          0 :   Bits fraction_bits() const { return kFractionBitMask &amp; u_.bits_; }</span>
@@ -466,10 +466,10 @@
 <span class="lineNum">     395 </span>                :            :   Bits sign_bit() const { return kSignBitMask &amp; u_.bits_; }
 <a name="396"><span class="lineNum">     396 </span>                :            : </a>
 <span class="lineNum">     397 </span>                :            :   // Returns true iff this is NAN (not a number).
-<span class="lineNum">     398 </span>                :<span class="lineCov">          6 :   bool is_nan() const {</span>
+<span class="lineNum">     398 </span>                :<span class="lineCov">         24 :   bool is_nan() const {</span>
 <span class="lineNum">     399 </span>                :            :     // It's a NAN if the exponent bits are all ones and the fraction
 <span class="lineNum">     400 </span>                :            :     // bits are not entirely zeros.
-<span class="lineNum">     401 </span>[<span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 6 times"> + </span>][<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]:<span class="lineCov">          6 :     return (exponent_bits() == kExponentBitMask) &amp;&amp; (fraction_bits() != 0);</span>
+<span class="lineNum">     401 </span>[<span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 2 was taken 24 times"> + </span>][<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]:<span class="lineCov">         24 :     return (exponent_bits() == kExponentBitMask) &amp;&amp; (fraction_bits() != 0);</span>
 <span class="lineNum">     402 </span>                :            :   }
 <span class="lineNum">     403 </span>                :            : 
 <span class="lineNum">     404 </span>                :            :   // Returns true iff this number is at most kMaxUlps ULP's away from
@@ -478,14 +478,14 @@
 <span class="lineNum">     407 </span>                :            :   //   - returns false if either number is (or both are) NAN.
 <a name="408"><span class="lineNum">     408 </span>                :            :   //   - treats really large numbers as almost equal to infinity.</a>
 <span class="lineNum">     409 </span>                :            :   //   - thinks +0.0 and -0.0 are 0 DLP's apart.
-<span class="lineNum">     410 </span>                :<span class="lineCov">          3 :   bool AlmostEquals(const FloatingPoint&amp; rhs) const {</span>
+<span class="lineNum">     410 </span>                :<span class="lineCov">         12 :   bool AlmostEquals(const FloatingPoint&amp; rhs) const {</span>
 <span class="lineNum">     411 </span>                :            :     // The IEEE standard says that any comparison operation involving
 <span class="lineNum">     412 </span>                :            :     // a NAN must return false.
-<span class="lineNum">     413 </span>[<span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 3 times"> + </span>]:<span class="lineCov">          3 :     if (is_nan() || rhs.is_nan()) return false;</span>
-<span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchCov" title="Branch 7 was taken 3 times"> + </span>]
+<span class="lineNum">     413 </span>[<span class="branchCov" title="Branch 1 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 12 times"> + </span>]:<span class="lineCov">         12 :     if (is_nan() || rhs.is_nan()) return false;</span>
+<span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchCov" title="Branch 7 was taken 12 times"> + </span>]
 <span class="lineNum">     414 </span>                :            : 
 <span class="lineNum">     415 </span>                :            :     return DistanceBetweenSignAndMagnitudeNumbers(u_.bits_, rhs.u_.bits_)
-<span class="lineNum">     416 </span>                :<span class="lineCov">          3 :         &lt;= kMaxUlps;</span>
+<span class="lineNum">     416 </span>                :<span class="lineCov">         12 :         &lt;= kMaxUlps;</span>
 <span class="lineNum">     417 </span>                :            :   }
 <span class="lineNum">     418 </span>                :            : 
 <span class="lineNum">     419 </span>                :            :  private:
@@ -510,23 +510,23 @@
 <span class="lineNum">     438 </span>                :            :   //
 <a name="439"><span class="lineNum">     439 </span>                :            :   // Read http://en.wikipedia.org/wiki/Signed_number_representations</a>
 <span class="lineNum">     440 </span>                :            :   // for more details on signed number representations.
-<span class="lineNum">     441 </span>                :<span class="lineCov">          6 :   static Bits SignAndMagnitudeToBiased(const Bits &amp;sam) {</span>
-<span class="lineNum">     442 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">          6 :     if (kSignBitMask &amp; sam) {</span>
+<span class="lineNum">     441 </span>                :<span class="lineCov">         24 :   static Bits SignAndMagnitudeToBiased(const Bits &amp;sam) {</span>
+<span class="lineNum">     442 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 12 times"> + </span>]:<span class="lineCov">         24 :     if (kSignBitMask &amp; sam) {</span>
 <span class="lineNum">     443 </span>                :            :       // sam represents a negative number.
-<span class="lineNum">     444 </span>                :<span class="lineNoCov">          0 :       return ~sam + 1;</span>
+<span class="lineNum">     444 </span>                :<span class="lineCov">         12 :       return ~sam + 1;</span>
 <span class="lineNum">     445 </span>                :            :     } else {
 <span class="lineNum">     446 </span>                :            :       // sam represents a positive number.
-<span class="lineNum">     447 </span>                :<span class="lineCov">          6 :       return kSignBitMask | sam;</span>
+<span class="lineNum">     447 </span>                :<span class="lineCov">         24 :       return kSignBitMask | sam;</span>
 <span class="lineNum">     448 </span>                :            :     }
 <span class="lineNum">     449 </span>                :            :   }
 <span class="lineNum">     450 </span>                :            : 
 <a name="451"><span class="lineNum">     451 </span>                :            :   // Given two numbers in the sign-and-magnitude representation,</a>
 <span class="lineNum">     452 </span>                :            :   // returns the distance between them as an unsigned number.
-<span class="lineNum">     453 </span>                :<span class="lineCov">          3 :   static Bits DistanceBetweenSignAndMagnitudeNumbers(const Bits &amp;sam1,</span>
+<span class="lineNum">     453 </span>                :<span class="lineCov">         12 :   static Bits DistanceBetweenSignAndMagnitudeNumbers(const Bits &amp;sam1,</span>
 <span class="lineNum">     454 </span>                :            :                                                      const Bits &amp;sam2) {
-<span class="lineNum">     455 </span>                :<span class="lineCov">          3 :     const Bits biased1 = SignAndMagnitudeToBiased(sam1);</span>
-<span class="lineNum">     456 </span>                :<span class="lineCov">          3 :     const Bits biased2 = SignAndMagnitudeToBiased(sam2);</span>
-<span class="lineNum">     457 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :     return (biased1 &gt;= biased2) ? (biased1 - biased2) : (biased2 - biased1);</span>
+<span class="lineNum">     455 </span>                :<span class="lineCov">         12 :     const Bits biased1 = SignAndMagnitudeToBiased(sam1);</span>
+<span class="lineNum">     456 </span>                :<span class="lineCov">         12 :     const Bits biased2 = SignAndMagnitudeToBiased(sam2);</span>
+<span class="lineNum">     457 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         12 :     return (biased1 &gt;= biased2) ? (biased1 - biased2) : (biased2 - biased1);</span>
 <span class="lineNum">     458 </span>                :            :   }
 <span class="lineNum">     459 </span>                :            : 
 <span class="lineNum">     460 </span>                :            :   FloatingPointUnion u_;
@@ -580,14 +580,14 @@
 <span class="lineNum">     508 </span>                :            : // of a Test object.
 <a name="509"><span class="lineNum">     509 </span>                :            : class TestFactoryBase {</a>
 <span class="lineNum">     510 </span>                :            :  public:
-<span class="lineNum">     511 </span>        [<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 13 times"> + </span>]:<span class="lineCov">         13 :   virtual ~TestFactoryBase() {}</span>
+<span class="lineNum">     511 </span>        [<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 30 times"> + </span>]:<span class="lineCov">         30 :   virtual ~TestFactoryBase() {}</span>
 <span class="lineNum">     512 </span>                :            : 
 <span class="lineNum">     513 </span>                :            :   // Creates a test instance to run. The instance is both created and destroyed
 <span class="lineNum">     514 </span>                :            :   // within TestInfoImpl::Run()
 <span class="lineNum">     515 </span>                :            :   virtual Test* CreateTest() = 0;
 <a name="516"><span class="lineNum">     516 </span>                :            : </a>
 <span class="lineNum">     517 </span>                :            :  protected:
-<span class="lineNum">     518 </span>                :<span class="lineCov">         13 :   TestFactoryBase() {}</span>
+<span class="lineNum">     518 </span>                :<span class="lineCov">         30 :   TestFactoryBase() {}</span>
 <span class="lineNum">     519 </span>                :            : 
 <span class="lineNum">     520 </span>                :            :  private:
 <span class="lineNum">     521 </span>                :            :   GTEST_DISALLOW_COPY_AND_ASSIGN_(TestFactoryBase);
@@ -596,21 +596,23 @@
 <span class="lineNum">     524 </span>                :            : // This class provides implementation of TeastFactoryBase interface.
 <a name="525"><span class="lineNum">     525 </span>                :            : // It is used in TEST and TEST_F macros.</a>
 <span class="lineNum">     526 </span>                :            : template &lt;class TestClass&gt;
-<a name="527"><span class="lineNum">     527 </span>[<span class="branchNoCov" title="Branch 3 was not taken"> - </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 9 was not taken"> - </span><span class="branchCov" title="Branch 10 was taken 1 time"> + </span>]:<span class="lineCov">         39 : class TestFactoryImpl : public TestFactoryBase {</span></a>
-<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 15 was not taken"> - </span><span class="branchCov" title="Branch 16 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 21 was not taken"> - </span><span class="branchCov" title="Branch 22 was taken 1 time"> + </span>]
-<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 27 was not taken"> - </span><span class="branchCov" title="Branch 28 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 33 was not taken"> - </span><span class="branchCov" title="Branch 34 was taken 1 time"> + </span>]
-<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 39 was not taken"> - </span><span class="branchCov" title="Branch 40 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 45 was not taken"> - </span><span class="branchCov" title="Branch 46 was taken 1 time"> + </span>]
-<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 51 was not taken"> - </span><span class="branchCov" title="Branch 52 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 57 was not taken"> - </span><span class="branchCov" title="Branch 58 was taken 1 time"> + </span>]
-<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 63 was not taken"> - </span><span class="branchCov" title="Branch 64 was taken 1 time"> + </span>][<span class="branchNoCov" title="Branch 69 was not taken"> - </span><span class="branchCov" title="Branch 70 was taken 1 time"> + </span>]
-<span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 75 was not taken"> - </span><span class="branchCov" title="Branch 76 was taken 1 time"> + </span>]
+<a name="527"><span class="lineNum">     527 </span>[<span class="branchNoCov" title="Branch 3 was not taken"> - </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 9 was not taken"> - </span><span class="branchCov" title="Branch 10 was taken 2 times"> + </span>]:<span class="lineCov">         90 : class TestFactoryImpl : public TestFactoryBase {</span></a>
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 15 was not taken"> - </span><span class="branchCov" title="Branch 16 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 21 was not taken"> - </span><span class="branchCov" title="Branch 22 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 27 was not taken"> - </span><span class="branchCov" title="Branch 28 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 33 was not taken"> - </span><span class="branchCov" title="Branch 34 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 39 was not taken"> - </span><span class="branchCov" title="Branch 40 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 45 was not taken"> - </span><span class="branchCov" title="Branch 46 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 51 was not taken"> - </span><span class="branchCov" title="Branch 52 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 57 was not taken"> - </span><span class="branchCov" title="Branch 58 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 63 was not taken"> - </span><span class="branchCov" title="Branch 64 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 69 was not taken"> - </span><span class="branchCov" title="Branch 70 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 75 was not taken"> - </span><span class="branchCov" title="Branch 76 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 81 was not taken"> - </span><span class="branchCov" title="Branch 82 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 87 was not taken"> - </span><span class="branchCov" title="Branch 88 was taken 2 times"> + </span>]
 <span class="lineNum">     528 </span>                :            :  public:
-<span class="lineNum">     529 </span>[<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>][<span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span>]:<span class="lineCov">          1 :   virtual Test* CreateTest() { return new TestClass; }</span>
+<span class="lineNum">     529 </span>[<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>][<span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span>]:<span class="lineCov">          5 :   virtual Test* CreateTest() { return new TestClass; }</span>
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 13 was not executed"> # </span><span class="branchNoExec" title="Branch 14 was not executed"> # </span>][<span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 25 was not executed"> # </span><span class="branchNoExec" title="Branch 26 was not executed"> # </span>][<span class="branchNoExec" title="Branch 31 was not executed"> # </span><span class="branchNoExec" title="Branch 32 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 37 was not executed"> # </span><span class="branchNoExec" title="Branch 38 was not executed"> # </span>][<span class="branchNoExec" title="Branch 43 was not executed"> # </span><span class="branchNoExec" title="Branch 44 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 49 was not executed"> # </span><span class="branchNoExec" title="Branch 50 was not executed"> # </span>][<span class="branchNoExec" title="Branch 55 was not executed"> # </span><span class="branchNoExec" title="Branch 56 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 61 was not executed"> # </span><span class="branchNoExec" title="Branch 62 was not executed"> # </span>][<span class="branchNoExec" title="Branch 67 was not executed"> # </span><span class="branchNoExec" title="Branch 68 was not executed"> # </span>]
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 73 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 74 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 73 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 74 was not taken"> - </span>][<span class="branchCov" title="Branch 79 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 80 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 85 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 86 was not taken"> - </span>]
 <span class="lineNum">     530 </span>                :            : };
 <span class="lineNum">     531 </span>                :            : 
 <span class="lineNum">     532 </span>                :            : #if GTEST_OS_WINDOWS
