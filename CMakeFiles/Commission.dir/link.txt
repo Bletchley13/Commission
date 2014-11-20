@@ -1,0 +1,2 @@
+/usr/bin/ar cr libCommission.a  CMakeFiles/Commission.dir/Commission.cpp.o
+/usr/bin/ranlib libCommission.a

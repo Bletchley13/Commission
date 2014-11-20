@@ -117,6 +117,11 @@ TEST( EdgeTest, TERMINATE) {
 	EXPECT_EXIT(Commission(-1,-1,-1), ::testing::ExitedWithCode(0), "");
 }
 
+TEST( Coverage, C0_1) {
+	EXPECT_FLOAT_EQ( 4.5, Commission(1,0,0) );
+	EXPECT_FLOAT_EQ( 115.0, Commission(11,11,11) );
+	EXPECT_FLOAT_EQ( 240.0, Commission(19,19,19) );
+}
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

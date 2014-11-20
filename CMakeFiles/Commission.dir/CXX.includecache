@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bletchley/WorkSpace/2014_SoftwareTesting/Commission/Commission.cpp
+cstdlib
+-
+Commission.h
+/home/bletchley/WorkSpace/2014_SoftwareTesting/Commission/Commission.h
+
+/home/bletchley/WorkSpace/2014_SoftwareTesting/Commission/Commission.h
+
